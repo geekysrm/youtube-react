@@ -2,6 +2,7 @@
   "name": "youtube-clone",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://geekysrm.github.io/youtube-react",
   "dependencies": {
     "lodash": "^4.17.10",
     "react": "^16.3.2",
