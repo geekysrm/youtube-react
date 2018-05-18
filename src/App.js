@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import API_KEY from "./config_keys";
 
 class App extends Component {
   render() {
