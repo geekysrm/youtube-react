@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import _ from "lodash";
 import YTSearch from "youtube-api-search";
 import "./App.css";
 import Searchbar from "./components/Searchbar";
@@ -20,9 +21,13 @@ class App extends Component {
   }
 
   render() {
+    const videoSearch = _.debounce(term => {
+      this.videoSearch(term);
+    }, 300);
+    //throttling done above - search triggers once every 300 millisecongs
     return (
       <div className="App">
-        <Searchbar onSearchTermChange={term => this.videoSearch(term)} />
+        <Searchbar onSearchTermChange={videoSearch} />
         <VideoDetail video={this.state.selectedVideo} />
         <VideoList
           onVideoSelect={selectedVideo =>
