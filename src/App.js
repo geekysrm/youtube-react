@@ -9,9 +9,9 @@ import API_KEY from "./config_keys";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { videos: [] };
+    this.state = { videos: [], selectedVideo: null };
     YTSearch({ key: API_KEY, term: "surfboards" }, data => {
-      this.setState({ videos: data });
+      this.setState({ videos: data, selectedVideo: data[0] });
     });
   }
 
@@ -19,8 +19,16 @@ class App extends Component {
     return (
       <div className="App">
         <Searchbar />
-        <VideoDetail video={this.state.videos[0]} />
-        <VideoList videos={this.state.videos} />
+        <VideoDetail video={this.state.selectedVideo} />
+        <VideoList
+          onVideoSelect={selectedVideo =>
+            this.setState({
+              selectedVideo
+            })
+          }
+          videos={this.state.videos}
+        />
+        {/*Above code means the code ( selectedVideo => this.setState({ selectedVideo } ) will be executed when the func onVideoSelect is called in any of the children of App component*/}
       </div>
     );
   }
